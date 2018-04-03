@@ -16,7 +16,7 @@ namespace GoWeather
 
             if (accessStatus != GeolocationAccessStatus.Allowed)
             {
-                throw new Exception("Access denied...");
+                throw new Exception("Geolocation Access denied...");
             }
 
             var geolocator = new Geolocator { DesiredAccuracyInMeters = 0 };

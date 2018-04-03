@@ -84,36 +84,50 @@ namespace GoWeather
 
         public async void LoadGeoCity()
         {
-            var position = await LocationManager.GetPosition();
 
-            string tempUnit = "";
-            var x = position.Coordinate.Point.Position.Latitude;
-            var y = position.Coordinate.Point.Position.Longitude;
+            try
+            {
+                var position = await LocationManager.GetPosition();
 
-            if (localSettings.Values["temp"] == null)
+                string tempUnit = "";
+                var x = position.Coordinate.Point.Position.Latitude;
+                var y = position.Coordinate.Point.Position.Longitude;
+
+                if (localSettings.Values["temp"] == null)
+                {
+
+                    localSettings.Values["temp"] = "metric";
+                    tempUnit = "metric";
+
+                }
+                else
+                {
+                    tempUnit = localSettings.Values["temp"].ToString();
+                }
+
+
+
+                result = await WeatherProxy.GetWeatherByLocation(x, y, tempUnit);
+
+
+                if (result != null)
+                {
+                    progressRing.IsActive = false;
+
+                    SetLayout(result, tempUnit);
+
+                }
+            }
+            catch (Exception e)
             {
 
-                localSettings.Values["temp"] = "metric";
-                tempUnit = "metric";
+                getForecast.IsEnabled = false;
+                search.IsEnabled = false;
+                error.Foreground = new SolidColorBrush(Colors.Red);
+                error.Text = e.Message.ToString();
 
             }
-            else
-            {
-                tempUnit = localSettings.Values["temp"].ToString();
-            }
-
-             
-
-             result = await WeatherProxy.GetWeatherByLocation(x, y, tempUnit);
-
-
-            if (result != null)
-            {
-                progressRing.IsActive = false;
-
-                SetLayout(result,tempUnit);
-
-            }
+            
 
         }
 

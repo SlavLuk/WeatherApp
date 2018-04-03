@@ -15,6 +15,7 @@ namespace GoWeather
         public async static Task<RootObject> GetWeatherByLocation(double lat,double lon,string tempUnit)
         {
             var http = new HttpClient();
+    
             var response = await http.GetStringAsync(String.Format("http://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&units={2}&", lat,lon,tempUnit) + API_KEY);
 
             var weatherObject = JsonConvert.DeserializeObject<RootObject>(response);
