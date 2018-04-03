@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="GoWeather.Setting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GoWeather"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <StackPanel Orientation="Vertical"  >
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left"  x:Name="BackButton"  Click="BackButton_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+        <StackPanel HorizontalAlignment="Left">
+            <TextBlock
+                    Style="{StaticResource TitleTextBlockStyle}"
+                    Margin="50,10,0,0"
+                    FontWeight="Normal"
+                    Text="Temperature" />
+            <StackPanel  Margin="50,20,0,0">
+
+                <RadioButton  GroupName="temperature"  x:Name="metric" Checked="Temp_RadioButton_Checked" Content="Celsius" />
+                <RadioButton GroupName="temperature" x:Name="imperial" Checked="Temp_RadioButton_Checked" Content="Fahrenheit" />
+               
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left">
+            <TextBlock
+                    Style="{StaticResource TitleTextBlockStyle}"
+                    Margin="50,10,0,0"
+                    FontWeight="Normal"
+                    Text="Wind Speed" />
+            <StackPanel  Margin="50,20,0,0">
+                <RadioButton GroupName="windSpeed" x:Name="meter"  Content="Meter / second"  IsChecked="True"/>
+                <RadioButton GroupName="windSpeed" x:Name="miles"  Content="Miles / hour" />
+
+            </StackPanel>
+           
+        </StackPanel>
+<TextBlock x:Name="error" />
+    </StackPanel>
+
+</Page>
