@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -14,6 +15,7 @@ namespace GoWeather
     class CityProxy
     {
         private static string API_KEY = "APPID=cbc65cb5b205e9aee376cb91b5d42804";
+       
 
         public async static Task<RootObjectCity> GetWeatherByCityName(string city,string tempUnit)
         {
@@ -76,6 +78,10 @@ namespace GoWeather
 
     public class ListCity
     {
+
+        private ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        private string _temp;
+
         public int id { get; set; }
         public string name { get; set; }
         public CoordCity coord { get; set; }
@@ -95,11 +101,23 @@ namespace GoWeather
             get { return name + "," + sys.country; }
         }
 
+
+       
+
         public string getTemp
         {
-            get { return 
-                    
-                    (int)main.temp_min + " \u2103"+" / " + (int)main.temp_max + " \u2103"; }
+            get {
+               
+
+               if(localSettings.Values["temp"].Equals("metric"))
+                {
+                    return _temp = (int)main.temp_min + " \u2103" + " / " + (int)main.temp_max + " \u2103";
+                }
+
+                return _temp = (int)main.temp_min +" \u2109" + " / " + (int)main.temp_max + " \u2109";
+
+            }
+       
         }
 
         public string getDesc
@@ -117,7 +135,7 @@ namespace GoWeather
 
             
       
-    }
+        }
     
 
 

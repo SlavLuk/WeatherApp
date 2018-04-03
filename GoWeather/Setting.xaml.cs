@@ -48,13 +48,23 @@ namespace GoWeather
 
             var btnName = localSettings.Values["temp"];
 
-            if (((string)btnName).Equals("metric"))
+            if(btnName == null)
             {
                 metric.IsChecked = true;
+
             }
             else
             {
-                imperial.IsChecked = true;
+
+                if (((string)btnName).Equals("metric"))
+                {
+                    metric.IsChecked = true;
+                }
+                else
+                {
+                    imperial.IsChecked = true;
+                }
+
             }
 
             base.OnNavigatedTo(e);
@@ -79,8 +89,9 @@ namespace GoWeather
 
             if (btnChecked.HasValue)
             {
+               
 
-                error.Text = rb.Name.ToString();
+        
 
                 localSettings.Values["temp"] = rb.Name.ToString();
                

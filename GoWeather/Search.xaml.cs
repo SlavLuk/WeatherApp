@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,8 +46,17 @@ namespace GoWeather
         {
             Items.Clear();
             error.Text = "";
-            string tempUnit = localSettings.Values["temp"].ToString();
+            string tempUnit = "";
 
+            if (localSettings.Values["temp"] == null)
+            {
+                tempUnit = "metric";
+
+            }
+            else
+            {
+                tempUnit = localSettings.Values["temp"].ToString();
+            }
 
 
             try
@@ -60,6 +70,8 @@ namespace GoWeather
 
                     foreach (ListCity c in result.list)
                     {
+                      
+
                         Items.Add(c);
 
 
@@ -105,6 +117,9 @@ namespace GoWeather
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+
+          
+
             if (this.Frame.CanGoBack)
             {
                 this.Frame.GoBack();

@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="GoWeather.Forecast"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GoWeather"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid  >
+
+
+
+        <StackPanel Background="LightSkyBlue">
+            <Button VerticalAlignment="Top"
+                        HorizontalAlignment="Left"   x:Name="backButton" 
+                         Click="backButton_Click" 
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+            <StackPanel Orientation="Vertical" >
+
+
+                <TextBlock x:Name="cityName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"  FontSize="36" />
+
+            </StackPanel>
+
+            <ListView x:Name="listCity"  
+                       Background="Transparent" ItemsSource="{x:Bind Items}"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Center">
+               
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:ListForecast">
+                     
+                            <StackPanel Orientation="Horizontal" >
+
+                            <Image x:Name="ItemImage" HorizontalAlignment="Left"   Source="{x:Bind getIcon}" Margin="20,0,0,0" Stretch="Fill" />
+                            <TextBlock Text="{x:Bind getDateName}" Margin="20,5,0,0"  FontSize="24" />
+                              
+                                <TextBlock Text="{x:Bind getTemp}" Margin="20,5,0,0"  FontSize="24" />
+                            <TextBlock Text="{x:Bind getDesc}" Margin="20,5,0,0"   FontSize="24" />
+
+                            </StackPanel>
+                    
+                    </DataTemplate>
+                    </ListView.ItemTemplate>
+              
+            </ListView>
+         
+
+
+
+       
+        </StackPanel>
+
+    </Grid>
+
+
+</Page>

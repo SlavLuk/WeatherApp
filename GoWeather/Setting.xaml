@@ -24,20 +24,7 @@
             </StackPanel>
 
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left">
-            <TextBlock
-                    Style="{StaticResource TitleTextBlockStyle}"
-                    Margin="50,10,0,0"
-                    FontWeight="Normal"
-                    Text="Wind Speed" />
-            <StackPanel  Margin="50,20,0,0">
-                <RadioButton GroupName="windSpeed" x:Name="meter"  Content="Meter / second"  IsChecked="True"/>
-                <RadioButton GroupName="windSpeed" x:Name="miles"  Content="Miles / hour" />
-
-            </StackPanel>
-           
-        </StackPanel>
-<TextBlock x:Name="error" />
+   
     </StackPanel>
 
 </Page>

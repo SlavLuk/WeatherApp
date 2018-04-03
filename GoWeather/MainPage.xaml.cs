@@ -32,6 +32,7 @@ namespace GoWeather
     {
 
         private ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        private RootObject result;
 
         public MainPage()
         {
@@ -54,17 +55,19 @@ namespace GoWeather
         public void SetLayout(RootObject result,string tempUnit)
         {
 
-            string icon = String.Format("http://openweathermap.org/img/w/{0}.png", result.weather[0].icon);
+           
            
 
 
             if (tempUnit.Equals("metric"))
             {
                 tempResult.Text = ((int)result.main.temp).ToString() + " \u2103";
+                windSpeed.Text = "Wind: " + result.wind.speed.ToString() + " meter/sec";
             }
             else
             {
                 tempResult.Text = ((int)result.main.temp).ToString() + " \u2109";
+                windSpeed.Text = "Wind: " + result.wind.speed.ToString() + " miles / hour";
             }
 
            
@@ -73,9 +76,11 @@ namespace GoWeather
 
             description.Text =  result.weather[0].description.ToString()[0].ToString().ToUpper()+ result.weather[0].description.ToString().Substring(1);
             humidity.Text = String.Format("Humidity: {0} %", result.main.humidity);
-            windSpeed.Text = "Wind: "+result.wind.speed.ToString() + " meter/sec";
+
+            string icon = String.Format("http://openweathermap.org/img/w/{0}.png", result.weather[0].icon);
+
             iconImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
-         
+            
 
         }
 
@@ -84,13 +89,25 @@ namespace GoWeather
         {
             var position = await LocationManager.GetPosition();
 
-
+            string tempUnit = "";
             var x = position.Coordinate.Point.Position.Latitude;
             var y = position.Coordinate.Point.Position.Longitude;
 
-            string tempUnit = localSettings.Values["temp"].ToString();
+            if (localSettings.Values["temp"] == null)
+            {
 
-            RootObject result = await WeatherProxy.GetWeatherByLocation(x, y, tempUnit);
+                localSettings.Values["temp"] = "metric";
+                tempUnit = "metric";
+
+            }
+            else
+            {
+                tempUnit = localSettings.Values["temp"].ToString();
+            }
+
+             
+
+             result = await WeatherProxy.GetWeatherByLocation(x, y, tempUnit);
 
 
             if (result != null)
@@ -111,12 +128,6 @@ namespace GoWeather
         }
 
 
-
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Search));
-        }
-
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -124,13 +135,13 @@ namespace GoWeather
 
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter))
             {
-                //   RootObject result = await WeatherProxy.GetWeatherByCity(e.Parameter.ToString());
+             
 
                 string[] coords = e.Parameter.ToString().Split(' ');
 
                 string tempUnit = localSettings.Values["temp"].ToString();
 
-                RootObject result = await WeatherProxy.GetWeatherByLocation(double.Parse(coords[0]), double.Parse(coords[1]), tempUnit);
+                 result = await WeatherProxy.GetWeatherByLocation(double.Parse(coords[0]), double.Parse(coords[1]), tempUnit);
 
            
 
@@ -147,6 +158,30 @@ namespace GoWeather
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Setting));
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Search));
+        }
+
+        private  void getForecast_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (result == null)
+            {
+
+                getForecast.IsEnabled = false;
+
+            }
+
+            getForecast.IsEnabled = true;
+
+            var coords = String.Format("{0} {1}", result.coord.lat, result.coord.lon);
+            
+           
+
+            Frame.Navigate(typeof(Forecast),coords);
         }
     }
 }
