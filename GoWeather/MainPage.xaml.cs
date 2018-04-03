@@ -55,9 +55,6 @@ namespace GoWeather
         public void SetLayout(RootObject result,string tempUnit)
         {
 
-           
-           
-
 
             if (tempUnit.Equals("metric"))
             {
@@ -118,25 +115,14 @@ namespace GoWeather
 
             }
 
-
-
-
-
-
-
-
         }
 
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-
-          
-
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter))
             {
              
-
                 string[] coords = e.Parameter.ToString().Split(' ');
 
                 string tempUnit = localSettings.Values["temp"].ToString();

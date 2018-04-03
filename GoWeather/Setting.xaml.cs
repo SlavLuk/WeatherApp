@@ -31,17 +31,6 @@ namespace GoWeather
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-
-           
-
-          
-
-
-
-        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -89,11 +78,8 @@ namespace GoWeather
 
             if (btnChecked.HasValue)
             {
-               
 
-        
-
-                localSettings.Values["temp"] = rb.Name.ToString();
+               localSettings.Values["temp"] = rb.Name.ToString();
                
             }
 
