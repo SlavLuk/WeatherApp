@@ -1,6 +1,6 @@
 # Weather App Project
 
-WeatherGo application displays weather at the current location or based on city name search result.
+GoWeather application displays weather at the current location or based on city name search result.
 
 
 ## Description
