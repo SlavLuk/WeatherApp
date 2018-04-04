@@ -7,16 +7,14 @@
     xmlns:local="using:GoWeather"
     mc:Ignorable="d"
    >
-
-
-
-    <Grid  >
-
-        
-
-        <StackPanel Background="LightSkyBlue">
-            <Button VerticalAlignment="Top" HorizontalAlignment="Left"   x:Name="backButton"  Click="BackButton_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
-            <SearchBox x:Name="mySearchBox" Margin="20,10,20,10" FocusOnKeyboardInput="True" QuerySubmitted="mySearchBox_QuerySubmitted" Height="35"/>
+    
+    <Grid>
+        <StackPanel >
+            <Button VerticalAlignment="Top" HorizontalAlignment="Left"   x:Name="backButton"  Click="BackButton_Click"
+                    Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+            
+            <SearchBox x:Name="mySearchBox" Margin="20,10,20,10" PlaceholderText="City name" FocusOnKeyboardInput="True" 
+                       QuerySubmitted="MySearchBox_QuerySubmitted" Height="35"/>
 
             <ListView x:Name="listCity" ScrollViewer.VerticalScrollBarVisibility="Visible"  
                       Background="Transparent" ItemsSource="{x:Bind Items}"
@@ -28,8 +26,8 @@
 
                         <StackPanel Orientation="Horizontal" >
                             <Image x:Name="ItemImage" Source="{x:Bind getIcon}" Margin="20,0,0,0" Stretch="Fill" />
-                            <TextBlock Text="{x:Bind getName}" Margin="20,5,0,0"  FontSize="24" />
-                            <TextBlock Text="{x:Bind getTemp}" Margin="20,5,0,0"  FontSize="24" />
+                            <TextBlock Text="{x:Bind getName}" Margin="20,5,0,0"  FontSize="30" />
+                            <TextBlock Text="{x:Bind getTemp}" Margin="20,5,0,0"  FontSize="30" />
 
                         </StackPanel>
                     </DataTemplate>

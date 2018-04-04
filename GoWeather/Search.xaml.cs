@@ -42,7 +42,7 @@ namespace GoWeather
 
         
 
-        private async void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
+        private async void MySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
             Items.Clear();
             error.Text = "";
@@ -61,64 +61,49 @@ namespace GoWeather
 
             try
             {
+                //get list of cities based on selected item
                 result = await CityProxy.GetWeatherByCityName(args.QueryText,tempUnit);
 
-           
-
-                if (result.list.Count > 0)
-                {
-
-                    foreach (ListCity c in result.list)
+                    if (result.list.Count > 0)
                     {
-                      
+                        //add to the list of ObservableCollection
+                        foreach (ListCity c in result.list)
+                        {
 
-                        Items.Add(c);
-
+                            Items.Add(c);
+                        }
 
                     }
-
-                }
-                else
-                {
-                    error.Text = "No results";
-                }
+                    else
+                    {
+                        error.Text = "No results";
+                    }
             }
             catch (Exception )
-            {
+                    {
 
-                error.Text = "No results";
-            }
-
-       
-
-         
-
-           
-
+                        error.Text = "No results";
+                    }           
         }
 
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (ListCity)listCity.SelectedItem;
-            string passedValue = selected.coord.lat+" "+selected.coord.lon;
+
+            string coords = selected.coord.lat+" "+selected.coord.lon;
           
 
             if (selected != null)
             {
 
-                 Frame.Navigate(typeof(MainPage), passedValue);
+                 Frame.Navigate(typeof(MainPage), coords);
             }
-
-
-
 
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
-          
 
             if (this.Frame.CanGoBack)
             {

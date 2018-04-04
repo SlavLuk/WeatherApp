@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace GoWeather
@@ -41,12 +42,18 @@ namespace GoWeather
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
+           
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
+
+    
+                rootFrame.Background =  new ImageBrush { ImageSource = new BitmapImage (new Uri("ms-appx:///Assets/sky.png", UriKind.RelativeOrAbsolute)), Opacity = 0.5 };
+
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 

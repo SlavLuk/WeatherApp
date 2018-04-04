@@ -23,7 +23,7 @@ namespace GoWeather
     /// </summary>
     public sealed partial class Setting : Page
     {
-
+        //get current localsettings container
         private ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
         public Setting()

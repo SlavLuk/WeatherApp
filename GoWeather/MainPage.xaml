@@ -24,20 +24,20 @@
         </CommandBar>
         </Page.BottomAppBar>
 
-    <Grid Background="LightSkyBlue" >
+    <Grid >
             <StackPanel x:Name="topPanel"  Orientation="Vertical">
 
 
             <StackPanel Orientation="Vertical">
 
-                <TextBlock x:Name="countryResult" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,30,0,0" FontSize="40"  />
+                <TextBlock x:Name="countryResult" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,30,0,0" FontSize="40"  />
                 <TextBlock x:Name="error" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="0,0,0,0" TextWrapping="Wrap"/>
                 <StackPanel Orientation="Horizontal">
 
 
 
                     <Image x:Name="iconImage" Width="100" Height="100" Stretch="Fill" HorizontalAlignment="Left" Margin="50,0,10,0" />
-                    <TextBlock x:Name="tempResult" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="70"  FontWeight="Bold" Margin="20,0,10,0" />
+                    <TextBlock x:Name="tempResult" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Verdana" Margin="20,0,10,0" />
                 
                 </StackPanel>
 
@@ -53,7 +53,7 @@
             </StackPanel>
             <StackPanel>
 
-            <Button x:Name="getForecast" Click="getForecast_Click" HorizontalAlignment="Center" Content="Get 5 day weather forecast" Margin="0,20,0,20"/>
+            <Button x:Name="getForecast" Click="GetForecast_Click" HorizontalAlignment="Center" Content="Get 5 day weather forecast" Padding="10,10,10,10"  Margin="0,20,0,20"/>
 
         </StackPanel>
 

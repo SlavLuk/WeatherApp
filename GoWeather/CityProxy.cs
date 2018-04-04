@@ -15,12 +15,13 @@ namespace GoWeather
     class CityProxy
     {
         private static string API_KEY = "APPID=cbc65cb5b205e9aee376cb91b5d42804";
+        private static string URL = "http://api.openweathermap.org/data/2.5/find?q={0}&units={1}&cnt=10&type=accurate&";
        
 
         public async static Task<RootObjectCity> GetWeatherByCityName(string city,string tempUnit)
         {
             var http = new HttpClient();
-            var response = await http.GetStringAsync(String.Format("http://api.openweathermap.org/data/2.5/find?q={0}&units={1}&cnt=20&type=accurate&", city, tempUnit) + API_KEY);
+            var response = await http.GetStringAsync(String.Format(URL, city, tempUnit) + API_KEY);
 
             var weatherObject = JsonConvert.DeserializeObject<RootObjectCity>(response);
 

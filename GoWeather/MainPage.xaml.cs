@@ -37,25 +37,20 @@ namespace GoWeather
         public MainPage()
         {
 
-           
-
             this.InitializeComponent();
-
 
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
-          LoadGeoCity();
-
-          
+            LoadGeoCity();
 
         }
 
    
 
-        public void SetLayout(RootObject result,string tempUnit)
+        private void SetLayout(RootObject result,string tempUnit)
         {
 
-
+            //check on temp and wind speed unit passed 
             if (tempUnit.Equals("metric"))
             {
                 tempResult.Text = ((int)result.main.temp).ToString() + " \u2103";
@@ -67,11 +62,11 @@ namespace GoWeather
                 windSpeed.Text = "Wind: " + result.wind.speed.ToString() + " miles / hour";
             }
 
-           
+            //set up results 
             countryResult.Text = result.name.ToString() + "," + result.sys.country;
 
-
             description.Text =  result.weather[0].description.ToString()[0].ToString().ToUpper()+ result.weather[0].description.ToString().Substring(1);
+
             humidity.Text = String.Format("Humidity: {0} %", result.main.humidity);
 
             string icon = String.Format("http://openweathermap.org/img/w/{0}.png", result.weather[0].icon);
@@ -82,17 +77,19 @@ namespace GoWeather
         }
 
 
-        public async void LoadGeoCity()
+        private async void LoadGeoCity()
         {
 
             try
             {
+                //get position coords of current location
                 var position = await LocationManager.GetPosition();
 
                 string tempUnit = "";
                 var x = position.Coordinate.Point.Position.Latitude;
                 var y = position.Coordinate.Point.Position.Longitude;
 
+                //check if settings set up 
                 if (localSettings.Values["temp"] == null)
                 {
 
@@ -106,7 +103,7 @@ namespace GoWeather
                 }
 
 
-
+                //get weather by location coords
                 result = await WeatherProxy.GetWeatherByLocation(x, y, tempUnit);
 
 
@@ -120,7 +117,7 @@ namespace GoWeather
             }
             catch (Exception e)
             {
-
+                //write exception message
                 getForecast.IsEnabled = false;
                 search.IsEnabled = false;
                 error.Foreground = new SolidColorBrush(Colors.Red);
@@ -134,6 +131,7 @@ namespace GoWeather
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //check passed back parameter
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter))
             {
              
@@ -141,6 +139,7 @@ namespace GoWeather
 
                 string tempUnit = localSettings.Values["temp"].ToString();
 
+                //get weather root object based on coords passed back from search page
                  result = await WeatherProxy.GetWeatherByLocation(double.Parse(coords[0]), double.Parse(coords[1]), tempUnit);
 
            
@@ -165,7 +164,7 @@ namespace GoWeather
             Frame.Navigate(typeof(Search));
         }
 
-        private  void getForecast_Click(object sender, RoutedEventArgs e)
+        private  void GetForecast_Click(object sender, RoutedEventArgs e)
         {
 
             if (result == null)

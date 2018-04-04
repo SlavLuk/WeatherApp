@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
 
-    <StackPanel Orientation="Vertical"  >
+    <StackPanel Orientation="Vertical" Background="LightGray" >
         <Button VerticalAlignment="Top" HorizontalAlignment="Left"  x:Name="BackButton"  Click="BackButton_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
         <StackPanel HorizontalAlignment="Left">
             <TextBlock

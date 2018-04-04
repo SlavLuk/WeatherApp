@@ -40,7 +40,7 @@ namespace GoWeather
             this.InitializeComponent();
         }
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.Frame.CanGoBack)
             {
@@ -53,45 +53,41 @@ namespace GoWeather
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-
-
-
+            //check passed back parameter
             if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter))
             {
-
-                string[] coords = e.Parameter.ToString().Split(' ');
-
-                string tempUnit = localSettings.Values["temp"].ToString();
-
-                RootObjectForecast result = await ForecastProxy.GetWeatherByLocation(double.Parse(coords[0]), double.Parse(coords[1]), tempUnit);
-
-                Items.Clear();
-
-                cityName.Text = result.city.name.ToString() + "," + result.city.country.ToString();
-
-                if (result.list.Count > 0)
+                try
                 {
+                    string[] coords = e.Parameter.ToString().Split(' ');
 
-                    foreach (ListForecast c in result.list)
+                    string tempUnit = localSettings.Values["temp"].ToString();
+
+                    //get forecast root object based on coords passed back from search page
+                    RootObjectForecast result = await ForecastProxy.GetWeatherByLocation(double.Parse(coords[0]), double.Parse(coords[1]), tempUnit);
+
+                    Items.Clear();
+
+                    cityName.Text = result.city.name.ToString() + "," + result.city.country.ToString();
+
+                    if (result.list.Count > 0)
                     {
-                        if (c.dt_txt.Contains("15:00:00"))
+
+                        foreach (ListForecast c in result.list)
                         {
-                            Items.Add(c);
+                            //add forecast weather object to collection based on 15:00 forecast
+                            if (c.dt_txt.Contains("15:00:00"))
+                            {
+                                Items.Add(c);
+                            }
                         }
-
-                      
-
-
                     }
-
                 }
-
-      
+                catch (Exception ex)
+                {
+                    error.Text = ex.Message.ToString();
+                   
+                }      
             }
-
-        }
-
-       
+        }      
     }
-
 }
