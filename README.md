@@ -27,6 +27,17 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 8. Press Enter. Your local clone will be created.
 
+## Build the sample
+
+1. Start Microsoft Visual Studio 2017 and select **File** \> **Open** \> **Project/Solution**.
+2. Starting in the folder where you unzipped the app go to the GoWeather folder. Double-click the Visual Studio Solution (.sln) file.
+3. Press Ctrl+Shift+B, or select **Build** \> **Build Solution**.
+
+
+### Deploying and running the sample
+
+- To debug the app and then run it, press F5
+
 ## License
 
 Educational 
