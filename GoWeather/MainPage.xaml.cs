@@ -10,8 +10,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -20,6 +18,8 @@ using System.Threading.Tasks;
 using System;
 using Windows.UI;
 using Windows.Storage;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -53,25 +53,25 @@ namespace GoWeather
             //check on temp and wind speed unit passed 
             if (tempUnit.Equals("metric"))
             {
-                tempResult.Text = ((int)result.main.temp).ToString() + " \u2103";
-                windSpeed.Text = "Wind: " + result.wind.speed.ToString() + " meter/sec";
+                TempResult.Text = ((int)result.main.temp).ToString() + " \u2103";
+                WindSpeed.Text = "Wind: " + result.wind.speed.ToString() + " meter/sec";
             }
             else
             {
-                tempResult.Text = ((int)result.main.temp).ToString() + " \u2109";
-                windSpeed.Text = "Wind: " + result.wind.speed.ToString() + " miles / hour";
+                TempResult.Text = ((int)result.main.temp).ToString() + " \u2109";
+                WindSpeed.Text = "Wind: " + result.wind.speed.ToString() + " miles / hour";
             }
 
             //set up results 
-            countryResult.Text = result.name.ToString() + "," + result.sys.country;
+            CountryResult.Text = result.name.ToString() + "," + result.sys.country;
 
-            description.Text =  result.weather[0].description.ToString()[0].ToString().ToUpper()+ result.weather[0].description.ToString().Substring(1);
+            Description.Text =  result.weather[0].description.ToString()[0].ToString().ToUpper()+ result.weather[0].description.ToString().Substring(1);
 
-            humidity.Text = String.Format("Humidity: {0} %", result.main.humidity);
+            Humidity.Text = String.Format("Humidity: {0} %", result.main.humidity);
 
             string icon = String.Format("http://openweathermap.org/img/w/{0}.png", result.weather[0].icon);
 
-            iconImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
+            IconImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
             
 
         }
@@ -109,7 +109,7 @@ namespace GoWeather
 
                 if (result != null)
                 {
-                    progressRing.IsActive = false;
+                    ProgressRing.IsActive = false;
 
                     SetLayout(result, tempUnit);
 
@@ -118,10 +118,10 @@ namespace GoWeather
             catch (Exception e)
             {
                 //write exception message
-                getForecast.IsEnabled = false;
-                search.IsEnabled = false;
-                error.Foreground = new SolidColorBrush(Colors.Red);
-                error.Text = e.Message.ToString();
+                GetForecast.IsEnabled = false;
+                SearchCity.IsEnabled = false;
+                Error.Foreground = new SolidColorBrush(Colors.Red);
+                Error.Text = e.Message.ToString();
 
             }
             
@@ -159,10 +159,7 @@ namespace GoWeather
             Frame.Navigate(typeof(Setting));
         }
 
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Search));
-        }
+        private void Search_Click(object sender, RoutedEventArgs e) => Frame.Navigate(sourcePageType: typeof(Search));
 
         private  void GetForecast_Click(object sender, RoutedEventArgs e)
         {
@@ -170,11 +167,11 @@ namespace GoWeather
             if (result == null)
             {
 
-                getForecast.IsEnabled = false;
+                GetForecast.IsEnabled = false;
 
             }
 
-            getForecast.IsEnabled = true;
+            GetForecast.IsEnabled = true;
 
             var coords = String.Format("{0} {1}", result.coord.lat, result.coord.lon);
             

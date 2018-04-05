@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Slav\source\repos\GoWeather\GoWeather\bin\x64\Release\GoWeather_1.1.0.0_x64.appx
+SymbolPackage=C:\Users\Slav\source\repos\GoWeather\GoWeather\AppPackages\GoWeather_1.1.0.0_Test\GoWeather_1.1.0.0_x64.appxsym

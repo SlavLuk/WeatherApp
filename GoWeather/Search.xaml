@@ -10,13 +10,13 @@
     
     <Grid>
         <StackPanel >
-            <Button VerticalAlignment="Top" HorizontalAlignment="Left"   x:Name="backButton"  Click="BackButton_Click"
+            <Button VerticalAlignment="Top" HorizontalAlignment="Left"  Click="BackButton_Click"
                     Style="{StaticResource NavigationBackButtonNormalStyle}"/>
             
-            <SearchBox x:Name="mySearchBox" Margin="20,10,20,10" PlaceholderText="City name" FocusOnKeyboardInput="True" 
+            <SearchBox Margin="20,10,20,10" PlaceholderText="City name" FocusOnKeyboardInput="True" 
                        QuerySubmitted="MySearchBox_QuerySubmitted" Height="35"/>
 
-            <ListView x:Name="listCity" ScrollViewer.VerticalScrollBarVisibility="Visible"  
+            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible"  x:Name="SearchResult"
                       Background="Transparent" ItemsSource="{x:Bind Items}"
                       HorizontalAlignment="Stretch" VerticalAlignment="Center" 
                       SelectionChanged="ListView_SelectionChanged" >
@@ -25,7 +25,7 @@
                     <DataTemplate x:DataType="local:ListCity">
 
                         <StackPanel Orientation="Horizontal" >
-                            <Image x:Name="ItemImage" Source="{x:Bind getIcon}" Margin="20,0,0,0" Stretch="Fill" />
+                            <Image Source="{x:Bind getIcon}" Margin="20,0,0,0" Stretch="Fill" />
                             <TextBlock Text="{x:Bind getName}" Margin="20,5,0,0"  FontSize="30" />
                             <TextBlock Text="{x:Bind getTemp}" Margin="20,5,0,0"  FontSize="30" />
 
@@ -34,7 +34,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <TextBlock x:Name="error" Margin="20,0,0,0" FontSize="24" />
+            <TextBlock x:Name="Error" Margin="20,0,0,0" FontSize="24" />
         </StackPanel>
 
     </Grid>

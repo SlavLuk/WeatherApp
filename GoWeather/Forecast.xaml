@@ -8,9 +8,6 @@
     mc:Ignorable="d">
 
     <Grid  >
-
-
-
         <StackPanel>
             <Button VerticalAlignment="Top"
                         HorizontalAlignment="Left"   x:Name="backButton" 
@@ -20,26 +17,26 @@
 
               
 
-                <TextBlock x:Name="cityName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"  FontSize="36" />
+                <TextBlock x:Name="CityName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10"  FontSize="36" />
 
             </StackPanel>
 
-            <ListView x:Name="listCity"  
-                       Background="Transparent" ItemsSource="{x:Bind Items}"
-                      HorizontalAlignment="Stretch" VerticalAlignment="Center">
-               
-                    <ListView.ItemTemplate>
+            <ListView  ItemsSource="{x:Bind Items}" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            
+                    <ListView.ItemTemplate >
+                        
                         <DataTemplate x:DataType="local:ListForecast">
-                     
-                            <StackPanel Orientation="Horizontal" >
 
-                            <Image x:Name="ItemImage" HorizontalAlignment="Left"   Source="{x:Bind getIcon}" Margin="20,0,0,0" Stretch="Fill" />
-                            <TextBlock Text="{x:Bind getDateName}" Margin="20,5,0,0"  FontSize="30" />
-                              
-                                <TextBlock Text="{x:Bind getTemp}" Margin="20,5,0,0"  FontSize="30" />
-                            <TextBlock Text="{x:Bind getDesc}" Margin="20,5,0,0"   FontSize="30" />
+                        <StackPanel Orientation="Horizontal" >
+                            
+                            <Image  HorizontalAlignment="Left"   Source="{x:Bind getIcon}" Margin="20,0,0,0" Stretch="Fill" />
 
+                            <TextBlock Text="{x:Bind getDateName}" Margin="20,5,0,0"  FontSize="30"/>
+                            <TextBlock Text="{x:Bind getTemp}" Margin="20,5,0,0"  FontSize="30" />
+                            <StackPanel>
+                             <TextBlock Text="{x:Bind getDesc}"  Margin="20,5,0,0"   FontSize="30" />
                             </StackPanel>
+                        </StackPanel>
                     
                     </DataTemplate>
                     </ListView.ItemTemplate>
@@ -47,7 +44,7 @@
             </ListView>
 
 
-            <TextBlock x:Name="error" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="0,0,0,0" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Error" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="0,0,0,0" TextWrapping="Wrap"/>
 
 
         </StackPanel>

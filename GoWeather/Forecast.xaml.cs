@@ -67,7 +67,7 @@ namespace GoWeather
 
                     Items.Clear();
 
-                    cityName.Text = result.city.name.ToString() + "," + result.city.country.ToString();
+                    CityName.Text = result.city.name.ToString() + "," + result.city.country.ToString();
 
                     if (result.list.Count > 0)
                     {
@@ -84,7 +84,7 @@ namespace GoWeather
                 }
                 catch (Exception ex)
                 {
-                    error.Text = ex.Message.ToString();
+                    Error.Text = ex.Message.ToString();
                    
                 }      
             }

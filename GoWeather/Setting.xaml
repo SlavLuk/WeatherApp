@@ -8,14 +8,13 @@
     mc:Ignorable="d">
 
 
-    <StackPanel Orientation="Vertical" Background="LightGray" >
-        <Button VerticalAlignment="Top" HorizontalAlignment="Left"  x:Name="BackButton"  Click="BackButton_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+    <StackPanel Orientation="Vertical" >
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left"  Click="BackButton_Click" 
+                Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+        
         <StackPanel HorizontalAlignment="Left">
-            <TextBlock
-                    Style="{StaticResource TitleTextBlockStyle}"
-                    Margin="50,10,0,0"
-                    FontWeight="Normal"
-                    Text="Temperature" />
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}"  Margin="50,10,0,0" FontWeight="Normal" Text="Temperature" />
+                   
             <StackPanel  Margin="50,20,0,0">
 
                 <RadioButton  GroupName="temperature"  x:Name="metric" Checked="Temp_RadioButton_Checked" Content="Celsius" />

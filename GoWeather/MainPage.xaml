@@ -9,11 +9,8 @@
 
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Compact" >
+                       <AppBarButton  x:Name="SearchCity" Icon="Find"  Click="Search_Click"/>
        
-         
-                <AppBarButton  x:Name="search" Icon="Find" Label="Search" Click="Search_Click"/>
-        
-
             <CommandBar.SecondaryCommands >
                 
                 <AppBarButton  Icon="Setting" Label="Settings" Click="Setting_Click" HorizontalAlignment="Stretch"/>
@@ -25,41 +22,37 @@
         </Page.BottomAppBar>
 
     <Grid >
-            <StackPanel x:Name="topPanel"  Orientation="Vertical">
+            <StackPanel x:Name="TopPanel"  Orientation="Vertical">
 
 
             <StackPanel Orientation="Vertical">
 
-                <TextBlock x:Name="countryResult" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,30,0,0" FontSize="40"  />
-                <TextBlock x:Name="error" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="0,0,0,0" TextWrapping="Wrap"/>
+                <TextBlock x:Name="CountryResult" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,30,0,0" FontSize="40"  />
+                <TextBlock x:Name="Error" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36" Margin="0,0,0,0" TextWrapping="Wrap"/>
                 <StackPanel Orientation="Horizontal">
 
 
 
-                    <Image x:Name="iconImage" Width="100" Height="100" Stretch="Fill" HorizontalAlignment="Left" Margin="50,0,10,0" />
-                    <TextBlock x:Name="tempResult" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Verdana" Margin="20,0,10,0" />
+                    <Image x:Name="IconImage" Width="100" Height="100" Stretch="Fill" HorizontalAlignment="Left" Margin="50,0,10,0" />
+                    <TextBlock x:Name="TempResult" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Verdana" Margin="20,0,10,0" />
                 
                 </StackPanel>
 
             </StackPanel>
             <StackPanel>
 
-                <ProgressRing IsActive="True" x:Name="progressRing" Foreground="White" Width="50" Height="50"/>
+                <ProgressRing IsActive="True" x:Name="ProgressRing" Foreground="Blue" Width="50" Height="50"/>
 
-                <TextBlock x:Name="humidity" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36"  Margin="50,0,0,20" />
-                <TextBlock x:Name="windSpeed"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36"  Margin="50,0,0,20"/>
-                <TextBlock x:Name="description" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36"  Margin="50,0,0,20"/>
+                <TextBlock x:Name="Humidity" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36"  Margin="50,0,0,20" />
+                <TextBlock x:Name="WindSpeed"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36"  Margin="50,0,0,20"/>
+                <TextBlock x:Name="Description" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36"  Margin="50,0,0,20"/>
                
             </StackPanel>
             <StackPanel>
 
-            <Button x:Name="getForecast" Click="GetForecast_Click" HorizontalAlignment="Center" Content="Get 5 day weather forecast" Padding="10,10,10,10"  Margin="0,20,0,20"/>
+                <Button x:Name="GetForecast" Click="GetForecast_Click" HorizontalAlignment="Center" Content="Get 5 day weather forecast" Padding="10,10,10,10"  Margin="0,20,0,20"/>
 
         </StackPanel>
-
-
-          
-
 
         </StackPanel>
 
